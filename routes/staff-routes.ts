@@ -1,6 +1,6 @@
 import express from "express";
 import Staff from "../model/Staff";
-import {addStaff, deleteStaff, getAllStaffs, updateField, updateStaff} from "../database/prisma-data-store";
+import {addStaff, deleteStaff, getAllStaffs, updateStaff} from "../database/staff-data-store";
 
 
 const router = express.Router();
