@@ -24,6 +24,7 @@
 
 import express from 'express';
 import fieldRoutes from "./routes/field-routes";
+import staffRoutes from "./routes/staff-routes";
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/field', fieldRoutes);
+app.use('/staff', staffRoutes);
 
 // 404 Not Found Middleware
 app.use((req, res) => {
