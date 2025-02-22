@@ -20,6 +20,7 @@ model Field {
   fieldSize     String
   fieldImage01  String
   fieldImage02  String
+  crops         Crop[]
 }
 
 model Staff {
@@ -38,4 +39,15 @@ model Staff {
   contactNo   String
   email       String
   role        String
+}
+
+model Crop {
+  cropCode           String @id
+  cropCommonName     String
+  cropScientificName String
+  cropImage01        String
+  cropCategory       String
+  cropSeason         String
+  fieldCode          String
+  field              Field  @relation(fields: [fieldCode], references: [fieldCode])
 }
