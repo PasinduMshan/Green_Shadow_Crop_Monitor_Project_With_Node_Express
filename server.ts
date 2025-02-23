@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/field', fieldRoutes);
 app.use('/staff', staffRoutes);
+app.use('/crop', staffRoutes);
 
 // 404 Not Found Middleware
 app.use((req, res) => {
