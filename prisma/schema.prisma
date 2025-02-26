@@ -14,40 +14,81 @@ datasource db {
 }
 
 model Field {
-  fieldCode     String @id
+  fieldCode     String          @id
   fieldName     String
   fieldLocation String
   fieldSize     String
   fieldImage01  String
   fieldImage02  String
   crops         Crop[]
+  equipment     Equipment[]
+  monitoringLog MonitoringLog[]
 }
 
 model Staff {
-  staffId     String   @id
-  firstName   String
-  lastName    String
-  designation String
-  gender      String
-  joinDate    DateTime
-  dateOfBirth DateTime
-  address01   String
-  address02   String
-  address03   String
-  address04   String
-  address05   String
-  contactNo   String
-  email       String
-  role        String
+  staffId       String          @id
+  firstName     String
+  lastName      String
+  designation   String
+  gender        String
+  joinDate      DateTime
+  dateOfBirth   DateTime
+  address01     String
+  address02     String
+  address03     String
+  address04     String
+  address05     String
+  contactNo     String
+  email         String
+  role          String
+  equipment     Equipment[]
+  monitoringLog MonitoringLog[]
+  vehicle       Vehicle[]
 }
 
 model Crop {
-  cropCode           String @id
+  cropCode           String          @id
   cropCommonName     String
   cropScientificName String
   cropImage01        String
   cropCategory       String
   cropSeason         String
   fieldCode          String
-  field              Field  @relation(fields: [fieldCode], references: [fieldCode])
+  field              Field           @relation(fields: [fieldCode], references: [fieldCode])
+  monitoringLog      MonitoringLog[]
+}
+
+model Equipment {
+  equipmentId   String @id
+  equipmentName String
+  equipmentType String
+  status        String
+  staffId       String
+  fieldCode     String
+  staff         Staff  @relation(fields: [staffId], references: [staffId])
+  field         Field  @relation(fields: [fieldCode], references: [fieldCode])
+}
+
+model MonitoringLog {
+  logCode       String   @id
+  logDate       DateTime
+  logDetails    String
+  observedImage String
+  staffId       String
+  fieldCode     String
+  cropCode      String
+  staff         Staff    @relation(fields: [staffId], references: [staffId])
+  field         Field    @relation(fields: [fieldCode], references: [fieldCode])
+  crop          Crop     @relation(fields: [cropCode], references: [cropCode])
+}
+
+model Vehicle {
+  vehicleCode        String @id
+  licensePlateNumber String
+  vehicleCategory    String
+  fuelType           String
+  status             String
+  vehicleRemarks     String
+  staffId            String
+  staff              Staff  @relation(fields: [staffId], references: [staffId])
 }
